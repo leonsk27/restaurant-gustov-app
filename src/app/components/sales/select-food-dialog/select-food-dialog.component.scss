@@ -1,0 +1,19 @@
+* {
+    margin: 1%;
+  }
+    h3 {
+        margin: 1%;
+    }
+  .dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 16px;
+  }

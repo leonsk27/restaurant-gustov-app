@@ -1,0 +1,43 @@
+<h2>Reporte de Ventas Diarias</h2>
+<mat-form-field>
+  <mat-label>Seleccionar Fecha</mat-label>
+  <input matInput [matDatepicker]="picker" formControlName="date">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="getDailySales()">Obtener Reporte</button>
+<div>
+  <p>Total de Ventas: (Bs) {{ totalSales }}</p>
+  <p>Número de Ventas: {{ sales.length }}</p>
+</div>
+<div class="table-container">
+  <table mat-table [dataSource]="sales" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let sale"> {{ sale.id }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="client_name">
+      <th mat-header-cell *matHeaderCellDef> Cliente </th>
+      <td mat-cell *matCellDef="let sale"> {{ sale.client_name }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="nit_ci">
+      <th mat-header-cell *matHeaderCellDef> NIT/CI </th>
+      <td mat-cell *matCellDef="let sale"> {{ sale.nit_ci }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef> Total </th>
+      <td mat-cell *matCellDef="let sale"> {{ sale.total }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="created_at">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let sale"> {{ sale.created_at | date }} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openSaleDetailDialog(row)"></tr>
+  </table>
+</div>

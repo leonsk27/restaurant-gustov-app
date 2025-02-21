@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Detalles de la Venta</h1>
+<div mat-dialog-content>
+  <p>Cliente: {{ data.sale.client_name }}</p>
+  <p>NIT/CI: {{ data.sale.nit_ci }}</p>
+  <p>Total: (Bs) {{ data.sale.total }}</p>
+  <mat-list>
+    <mat-list-item *ngFor="let detail of saleDetails">
+      {{ detail.food_name }} - Cantidad: {{ detail.quantity }} - Total: {{ detail.total }}
+    </mat-list-item>
+  </mat-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Cerrar</button>
+</div>

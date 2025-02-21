@@ -1,0 +1,17 @@
+<h2>MENÚ DEL DÍA</h2>
+<button mat-raised-button (click)="openSaleDetailFoodDialog()"> <mat-icon>shopping_cart</mat-icon>VER VENTA</button>
+<div class="food-list">
+    <mat-card *ngFor="let food of foodsMenu" class="food-card" >
+      <mat-card-header>
+        <mat-card-title>{{ food.name }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="food.image_url ? food.image_url : 'https://gifdb.com/images/high/linguini-cooling-ratatouille-t5l39r8y067ktqtp.gif'" alt="{{ food.name }}">
+      <mat-card-content>
+        <p>{{ food.description_food }}</p>
+        <p>Precio: (Bs){{ food.price }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button (click)="openFoodSelectionDialog(food)">SELECCIONAR</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

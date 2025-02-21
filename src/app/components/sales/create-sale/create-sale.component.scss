@@ -1,0 +1,26 @@
+.food-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 1%;
+    mat-card {
+      margin: 1%;
+    }
+  }
+  mat-card-image {
+    height: 100%;
+  }
+  .food-card {
+    width: 300px;
+    img[mat-card-image] {
+      width: 100%;
+      height: 45%;
+      object-fit: cover;
+    }
+  }
+  button {
+    margin: 1%;
+  }
+  h2 {
+    margin: 1%;
+  }

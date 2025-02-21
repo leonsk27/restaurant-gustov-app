@@ -1,0 +1,31 @@
+<div class="home-container">
+    <div class="cover-image">
+      <div class="slider">
+        <div class="slide">
+          <img [src]="image_url" alt="Portada 1">
+        </div>
+        <div class="slide">
+          <img [src]="image_url2" alt="Portada 2">
+        </div>
+      </div>
+      <div class="cover-text">
+        <h1>Bienvenidos a Restaurant Gustov</h1>
+        <p>Descubre nuestros deliciosos platos</p>
+      </div>
+    </div>
+    <div class="menu-section">
+      <h2>Menú del Día</h2>
+      <div class="menu-items">
+        <mat-card class="menu-item" *ngFor="let food of foodsMenu">
+          <mat-card-header>
+            <mat-card-title>{{ food.name }}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image [src]="food.image_url" alt="{{ food.name }}">
+          <mat-card-content>
+            <p>{{ food.description_food }}</p>
+            <p>Precio: (Bs){{ food.price }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,13 @@
+<h3 mat-dialog-title>Comida solicitada: {{data.name}}</h3>
+<div mat-dialog-content>
+  <form [formGroup]="foodForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Cantidad</mat-label>
+      <input matInput type="number" formControlName="quantity" required>
+    </mat-form-field>
+    <div mat-dialog-actions>
+      <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+      <button mat-button type="submit" [disabled]="foodForm.invalid">Guardar</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,16 @@
+<button mat-raised-button (click)="openAddFoodDialog()">AÑADIR COMIDA</button>
+<div class="food-list">
+    <mat-card *ngFor="let food of foods" class="food-card" >
+      <mat-card-header>
+        <mat-card-title>{{ food.name }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="food.image_url ? food.image_url : 'https://i.gifer.com/MD30.gif'" alt="{{ food.name }}">
+      <mat-card-content>
+        <p>{{ food.description_food }}</p>
+        <p>Precio: (Bs){{ food.price }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button [color]="food.active ? 'warn' : 'primary'" (click)="updateFood(food)">{{ food.active ? 'QUITAR DEL MENÚ' : 'AGREGAR AL MENÚ'}}</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

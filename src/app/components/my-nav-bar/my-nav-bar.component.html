@@ -1,0 +1,22 @@
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="onSidenavOpened()" (closed)="onSidenavClosed()">
+      <div class="sidenav-header">
+        <img src="https://i.pinimg.com/736x/da/8b/81/da8b810f352eac1634f4e418047a6c9e.jpg" alt="" class="profile-image">
+      </div>
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let item of navItems" [routerLink]="item.route"><mat-icon>{{ item.icon }} </mat-icon> {{ item.label }}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="content-menu">
+        
+        <mat-list>
+          <button mat-flat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+        </mat-list>
+      </div>
+      <div class="content-outlet">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
