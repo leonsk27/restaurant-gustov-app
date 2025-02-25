@@ -31,8 +31,6 @@ export class CreateSaleComponent implements OnInit {
   //services
   getFoodsMenu(): void {
     this.foodsService.getMenu().then((foodsMenu) => {
-      console.log("listing foods menu");
-      console.log(foodsMenu);
       this.foodsMenu = foodsMenu;
     }).catch((error) => {
       console.error(error);
@@ -40,8 +38,6 @@ export class CreateSaleComponent implements OnInit {
   }
   addSale(): void {
     this.salesService.createSale(this.sale).then((newSale) => {
-      console.log("Sale created");
-      console.log(newSale);
       for (const detail of this.details) {
         detail.sale_id = newSale.id;
       }
@@ -53,8 +49,6 @@ export class CreateSaleComponent implements OnInit {
   addDetails(): void {
     for (const detail of this.details) {
       this.saleDetailsService.createSaleDetail(detail).then((newDetail) => {
-        console.log("Detail created");
-        console.log(newDetail);
       }).catch((error) => {
         console.error(error);
       });
@@ -69,10 +63,8 @@ export class CreateSaleComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: SaleInterface) => {
       if (result) {
-        console.log('Venta guardada:', result);
         this.sale = result;
         this.calculateSaleTotal();
-        console.log('Venta enviada a servidor:', this.sale);
         this.addSale();
       }
     });
@@ -82,8 +74,6 @@ export class CreateSaleComponent implements OnInit {
       data: food
     });
     dialogRef.afterClosed().subscribe((result: SaleDetailInterface) => {
-      console.log("The dialog was closed");
-      console.log(result);
       if (result) {
         this.addDetailToList(result);
       }

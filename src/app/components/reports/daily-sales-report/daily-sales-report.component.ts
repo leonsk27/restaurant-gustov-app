@@ -10,11 +10,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-daily-sales-report',
   standalone: true,
-  imports: [MatTableModule, CommonModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatNativeDateModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatTableModule, CommonModule, MatDatepickerModule, MatInputModule, MatButtonModule, MatNativeDateModule],
   templateUrl: './daily-sales-report.component.html',
   styleUrl: './daily-sales-report.component.scss'
 })
@@ -25,7 +25,9 @@ export class DailySalesReportComponent {
   dateForm: FormGroup;
   constructor(private salesService: SalesService, private dialog: MatDialog, private fb: FormBuilder) {
     this.dateForm = this.fb.group({
-      date: [new Date()]
+      date: [new Date()],
+      dateEnd: [new Date()]
+
     })
    }
   ngOnInit(): void {
@@ -34,11 +36,11 @@ export class DailySalesReportComponent {
   }
   //services
   getDailySales(): void {
-    const date = this.dateForm.get('date')?.value.toLocaleDateString('en-CA');
-    console.log("new date: ", date);
-    this.salesService.getSalesReport(date).then((salesReport) => {
-      console.log("Daily sales report");
-      console.log(salesReport);
+    const dateField = this.dateForm.get('date')?.value;
+    const dateEndField = this.dateForm.get("dateEnd")?.value;
+    const date = new Date(dateField).toISOString().split('T')[0];
+    const dateEnd = new Date(dateEndField).toISOString().split('T')[0];
+    this.salesService.getSalesReportBetweenDates(date, dateEnd).then((salesReport) => {
       this.sales = salesReport;
       this.calculateTotalSales();
     }).catch((error) => {

@@ -23,8 +23,6 @@ export class ListFoodComponent implements OnInit{
   //services
   getFoods(): void {
     this.foodsService.getFoods().then((foods) => {
-      console.log("listing foods");
-      console.log(foods);
       this.foods = foods;
     }).catch((error) => {
       console.error(error);
@@ -40,8 +38,6 @@ export class ListFoodComponent implements OnInit{
   updateFood(food: FoodInterface): void {
     food.active = !food.active;
     this.foodsService.updateFood(food).then((foodUpdated) => {
-      console.log("food updated");
-      console.log(foodUpdated);
       this.updateFoodByIndex(foodUpdated);
     }).catch((error) => {
       console.log(error);
@@ -51,7 +47,6 @@ export class ListFoodComponent implements OnInit{
   openAddFoodDialog(): void {
     const dialogRef = this.dialog.open(FoodFormDialogComponent);
     dialogRef.afterClosed().subscribe((result: FoodInterface) => {
-      console.log(result);
       this.addFood(result);
     });
   };

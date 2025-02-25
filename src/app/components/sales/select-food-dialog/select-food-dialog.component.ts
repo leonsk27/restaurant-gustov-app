@@ -30,7 +30,6 @@ export class SelectFoodDialogComponent {
     this.foodForm = this.fb.group({
       quantity: [1, [Validators.required, Validators.min(1)]]
     });
-    console.log(data);
   }
 // events and animations
   onSubmit(): void {

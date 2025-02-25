@@ -28,8 +28,6 @@ export class HomeComponent implements OnInit {
   //services
   getFoodsMenu(): void {
     this.foodsService.getMenu().then((foodsMenu) => {
-      console.log("listing foods menu");
-      console.log(foodsMenu);
       this.foodsMenu = foodsMenu;
     }).catch((error) => {
       console.error(error);

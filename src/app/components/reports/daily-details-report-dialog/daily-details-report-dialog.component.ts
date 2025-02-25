@@ -28,8 +28,6 @@ export class DailyDetailsReportDialogComponent {
   //services
   getSaleDetails(): void {
     this.saleDetailService.getSaleDetails(this.data.sale.id!).then((details) => {
-      console.log("Sale details");
-      console.log(details);
       this.saleDetails = details;
       this.assignFoodNames();
     }).catch((error) => {

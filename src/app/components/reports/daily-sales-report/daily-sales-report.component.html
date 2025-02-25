@@ -1,11 +1,19 @@
 <h2>Reporte de Ventas Diarias</h2>
-<mat-form-field>
-  <mat-label>Seleccionar Fecha</mat-label>
-  <input matInput [matDatepicker]="picker" formControlName="date">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
-<button mat-raised-button color="primary" (click)="getDailySales()">Obtener Reporte</button>
+<form [formGroup]="dateForm" (ngSubmit)="getDailySales()">
+  <mat-form-field>
+    <mat-label>Seleccionar fecha inicial</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Seleccionar fecha final</mat-label>
+    <input matInput [matDatepicker]="pickerEnd" formControlName="dateEnd">
+    <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+    <mat-datepicker #pickerEnd></mat-datepicker>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Obtener Reporte</button>
+</form>
 <div>
   <p>Total de Ventas: (Bs) {{ totalSales }}</p>
   <p>Número de Ventas: {{ sales.length }}</p>

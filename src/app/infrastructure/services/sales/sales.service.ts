@@ -11,9 +11,12 @@ export class SalesService implements SaleRepositoryInterface {
   private apiUri = 'https://api-rest-gustov-production.up.railway.app/api';
   constructor(private http: HttpClient) { }
   getSalesReport(date: string): Promise<SaleInterface[]> {
-    return firstValueFrom(this.http.get<SaleInterface[]>(`${this.apiUri}/sales/report/${date}`));
+    return firstValueFrom(this.http.get<SaleInterface[]>(`${this.apiUri}/sales/report1/${date}`));
   }
   createSale(sale: SaleInterface): Promise<SaleInterface> {
     return firstValueFrom(this.http.post<SaleInterface>(`${this.apiUri}/sales`, sale));
+  }
+  getSalesReportBetweenDates(date: string, dateEnd: string): Promise<SaleInterface[]> {
+    return firstValueFrom(this.http.get<SaleInterface[]>(`${this.apiUri}/sales/report2/${date}/${dateEnd}`));
   }
 }
